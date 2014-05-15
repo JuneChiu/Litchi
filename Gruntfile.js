@@ -1,6 +1,6 @@
 /*
  * grunt-Litchi
- * https://github.com/chiu/Litchi
+ * https://github.com/JuneChiu/Litchi
  *
  * Copyright (c) 2014 chiu
  * Licensed under the MIT license.
