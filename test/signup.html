@@ -1,0 +1,126 @@
+<!--output:signup-->
+<style>
+#ModuleId{
+	.input-msg.error{
+        margin-top: -1px;
+        display: none;
+        position: relative;
+    }
+	&.signup{width:330px;margin: 0 auto;}
+	&.signup .field-row{position:relative;width:310px;margin:15px auto;}
+	&.signup input{width: 288px;}
+	&.signup label.caption{position:absolute;top:0;left:0;padding:5px;text-indent:3px;color:#999;cursor:text;display: none;}
+	&.signup label.error{text-indent:0;margin-top:-1px;width:87%;padding-left:12%;}
+	&.signup .terms{color:#C4C4C4;}
+	&.signup a:hover{text-decoration:underline;}
+	&.signup #ajaxloading{position:absolute;top:7px;right:5px;margin-bottom:-16px;display: none;}
+	&.signup{
+		.field-row.agreement{
+			color: #777;
+			border-top: 1px solid #e5e8f1;
+			padding-top: 15px;
+			font-size: 11px;
+		}
+	}
+	input:-webkit-autofill {
+	    -webkit-box-shadow: 0 0 0px 1000px white inset;
+	}
+	.ajax-loading-icon {
+		top: 6px;
+		left: 288px;
+		position: absolute;
+		width: 0;
+		height: 0;
+		font-size: 0;
+		display: none;
+		padding: 8px;
+		background: url("//static.globalmarket.com/g/images/common/ajaxloading.gif");
+	}
+}
+</style>
+
+<form id="ModuleId" class="signup" action="/gmportal/{{#signup}}register/saveBuyer.gm{{/signup}}{{^signup}}user/jsonpConfirmInfo.gm{{/signup}}" method="post" autocomplete="off" novalidate="novalidate">
+
+	{{#signup}}
+	<div class="field-row">
+		<label class="caption" for="ModuleId-email">{{txt.business_email}}</label>
+		<input type="text" name="email" id="ModuleId-email" autocomplete="off" tabindex="1" data-error-for="[for=ModuleId-email].error">
+		<div class="input-msg error" for="ModuleId-email"></div>
+		<i class="ajax-loading-icon" data-for="email"></i>
+	</div>
+	{{/signup}}
+
+	{{#signup}}
+	<div class="field-row">
+		<label class="caption" for="ModuleId-password">{{txt.password}}</label>
+		<input maxlength="20" type="password" name="password" id="ModuleId-password" autocomplete="off" tabindex="2" data-error-for="[for=ModuleId-password].error">
+		<div class="input-msg error" for="ModuleId-password"></div>
+	</div>
+	{{/signup}}
+
+	<div class="field-row">
+		<select name="title" style="width: 82px;height: 28px;line-height: 28px;margin-right: 5px;" data-style="margin-right: 5px;width: 30px;" tabindex="3">
+			{{#titleGroup}}
+				<option value="{{key}}">{{value}}</option>
+			{{/titleGroup}}
+			{{^titleGroup}}
+			<option value="1">Mr</option>
+			<option value="2">Mrs</option>
+			<option value="3">Ms</option>
+			<option value="4">Dr</option>
+			{{/titleGroup}}
+		</select>
+		<input maxlength="50" type="text" name="givenName" id="ModuleId-givenName" style="width: 87px;margin-right: 5px;" tabindex="4" data-error-for="[for=ModuleId-names].error">
+		<input maxlength="50" type="text" name="familyName" id="ModuleId-familyName" style="width: 87px;" tabindex="5" data-error-for="[for=ModuleId-names].error">
+		<label class="caption" for="ModuleId-givenName" style="left: 87px;">{{txt.first_name}}{{^txt.first_name}}First Name{{/txt.first_name}}</label>
+		<label class="caption" for="ModuleId-familyName" style="left: 198px;">{{txt.last_name}}{{^txt.last_name}}Last Name{{/txt.last_name}}</label>
+		<div class="input-msg error" for="ModuleId-names" data-style="width:288px"></div>
+	</div>
+
+	<div class="field-row">
+		<label class="caption" for="ModuleId-compName">{{txt.company_name}}{{^txt.company_name}}Company Name{{/txt.company_name}}</label>
+		<input maxlength="50" type="text" name="compName" id="ModuleId-compName" tabindex="7" data-error-for="[for=ModuleId-compName].error">
+		<div class="input-msg error" for="ModuleId-compName"></div>
+	</div>
+
+	<div class="field-row">
+		<select id="ModuleId-countryId" name="countryId" style="width:99.5%;height: 28px;line-height: 28px;" tabindex="6" data-style="width: 258px;" data-error-for="[for=ModuleId-countryId].error">
+			<option value="">{{txt.country_area}}{{^txt.country_area}}Country/Region{{/txt.country_area}}</option>
+		</select>
+		<div class="input-msg error" for="ModuleId-countryId" data-style="width:288px"></div>
+	</div>
+
+	<div class="field-row">
+		<input maxlength="4" type="text" name="countryCode" id="ModuleId-countryCode" style="width: 50px;margin-right: 5px;" tabindex="8" data-error-for="[for=ModuleId-contact].error">
+		<input maxlength="4" type="text" name="areaCode" id="ModuleId-areaCode" style="width: 50px;margin-right: 5px;" tabindex="9" data-error-for="[for=ModuleId-contact].error">
+		<input maxlength="20" type="text" name="tel" id="ModuleId-tel" style="width: 134px;" tabindex="10" data-error-for="[for=ModuleId-contact].error">
+		<label class="caption" for="ModuleId-countryCode">86</label>
+		<label class="caption" for="ModuleId-areaCode" style="left: 78px;">020</label>
+		<label class="caption" for="ModuleId-tel" style="left: 154px;">86002299</label>
+		<div class="input-msg error" for="ModuleId-contact" data-style="width:288px"></div>
+	</div>
+
+	{{#signup}}
+	<div class="field-row" style="text-align:center;">
+		<button type="submit" id="loginin-submit-btn" class="btn yellow large" tabindex="11">{{txt.create}}{{^txt.create}}Create My Account{{/txt.create}}</button>
+	</div>
+
+	<div class="field-row agreement">
+		<p class="terms">I agree to the <a href="/ppc.html" target="_blank">Privacy Policy</a> and <a href="/terms-of-use.html" target="_blank">Terms of Use</a></p>
+	</div>
+	{{/signup}}
+
+	{{^signup}}
+	<div class="field-row dsa">
+		<label style="cursor:pointer;" for="ModuleId-dsa"><input id="ModuleId-dsa" type="checkbox" style="width: 13px;height: 13px;margin-right: 3px;margin-top: -3px;">{{txt.dont_show_this_again}}{{^txt.dont_show_this_again}}Do not show again{{/txt.dont_show_this_again}}</label>
+	</div>
+
+	<div class="field-row" style="text-align:center;">
+		<button type="submit" id="loginin-submit-btn" class="btn yellow large" tabindex="11">{{txt.submit}}{{^txt.submit}}Submit{{/txt.submit}}</button>
+	</div>
+
+	<div class="field-row agreement">
+		{{txt.privacy_policy_announcement_front}}{{^txt.privacy_policy_announcement_front}}Globalmarket.com will never give out or sell your personal information to third parties.For more details,please read our{{/txt.privacy_policy_announcement_front}} <a href="http://www.globalmarket.com/ppc.html" target="_blank">{{txt.privacy_policy}}{{^txt.privacy_policy}}Privacy Policy{{/txt.privacy_policy}}</a>
+	</div>
+	{{/signup}}
+</form>

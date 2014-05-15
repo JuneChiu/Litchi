@@ -1,0 +1,39 @@
+<!--output:login-->
+<style>
+.readonly{
+	background-color: #FCFCFC;
+	color: #777;
+}
+.pop-win-login-form{width:330px;margin: 0 auto;}
+.pop-win-login-form .noEdit {cursor: default;line-height: 3em;margin-left: 1px;}
+.pop-win-login-form .field-wrap{width:92%;margin:15px auto;}
+.pop-win-login-form #username,.pop-win-login-form #password{width:95%;padding:2%;}
+.pop-win-login-form #rememberMe{vertical-align:middle;margin-right:5px;}
+.pop-win-login-form label.caption{margin:5px 0;display:inline-block;*display:inline;zoom:1;}
+.pop-win-login-form label.sub{margin:0;}
+.pop-win-login-form label.error{text-indent:0;margin-top:-1px;width:87%;padding-left:12%;}
+.pop-win-login-form .forgotpw{margin:5px 0;display:inline-block;float:right;}
+</style>
+
+<form class="pop-win-login-form" action="/gmportal/user/ajaxLogin.gm" method="post">
+	<div class="field-wrap">
+		<label class="caption" for="username" style="font-weight:bold;">{{txt.business_email_or_member_id}}{{^txt.business_email_or_member_id}}Business Email or Member ID{{/txt.business_email_or_member_id}}:</label>
+		<input type="text" name="username" id="username" value="" autocomplete="off" tabindex="1">
+		<label for="username" class="error" style="display:none;"></label> 
+	</div>
+
+	<div class="field-wrap">
+		<label class="caption" for="password" style="font-weight:bold;">{{txt.password}}{{^txt.password}}Password{{/txt.password}}:</label>
+		<a href="/gmportal/user/forgetPassword.gm" class="forgotpw">{{txt.forgot_your_password}}{{^txt.forgot_your_password}}Forgot your password?{{/txt.forgot_your_password}}</a>
+		<input type="password" name="password" id="password" tabindex="2">
+		<label for="password" class="error" style="display:none;"></label>
+	</div>
+
+	<div class="field-wrap">
+		<button type="submit" id="loginin-submit-btn" class="btn yellow large" style="margin-right: 10px;" tabindex="3">{{txt.sign_in}}{{^txt.sign_in}}Sign in{{/txt.sign_in}}</button>
+		<label class="sub" for="rememberMe"><input type="checkbox" checked="checked" id="rememberMe" name="rememberMe"/>{{txt.stay_signed_in}}{{^txt.stay_signed_in}}Stay Signed in{{/txt.stay_signed_in}}</label>
+	</div>
+	<div class="field-wrap">
+		<a href="http://www.globalmarket.com/register.html" class="join-now">{{txt.join_free_now}}{{^txt.join_free_now}}Join Free Now!{{/txt.join_free_now}}</a> <a target="_blank" href="http://facetalk.globalmarket.com/ft/index.html?reqRobot=1&v=acdl&cs=0&ifdm=2&nas=2">在线咨询</a>
+	</div>
+</form>

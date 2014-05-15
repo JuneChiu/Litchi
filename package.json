@@ -1,0 +1,39 @@
+{
+  "name": "grunt-Litchi",
+  "description": "The best Grunt plugin ever.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/chiu/Litchi",
+  "author": {
+    "name": "chiu",
+    "email": "june.chiu@corp.globalmarket.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chiu/Litchi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chiu/Litchi/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/chiu/Litchi/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "less"      : "1.7.0",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}

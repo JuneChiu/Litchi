@@ -1,0 +1,102 @@
+<!--output:topbar-->
+<script id="tmpl-topbar-nologin" type="text/template">
+<div class="topbar-inner">
+    <a href="{{domain.portal}}" title="Manufacturers" alt="Manufacturers" class="icon substation-logo">GlobalMarket.com</a>
+    <div class="login-info"><span class="caption">Welcome to GlobalMarket.com</span><span class="caption-reverse">Welcome !</span><a href="{{domain.portal}}/register.html" class="seperate" rel="nofollow">Join Free</a> or <a href="{{domain.portal}}/signin.html" class="seperate topbar-login" rel="nofollow">Sign In</a></div>
+    {{> search}}
+    <ul class="quick-menu">
+        <li><span class="caption-reverse" style="position: relative;left: -5px;margin-left: 12px;"><b class="seperate">|</b></span><a href="{{domain.like}}" rel="nofollow"><i class="icon sns-entrance">Like</i></a><b class="seperate language">|</b></li>
+        <li class="menu language"><a href="javascript:void(0);"><i class="icon language"></i><span class="caption">Language</span><i class="dropdown"></i></a>
+            <ul class="sub">
+                {{> language}}
+            </ul>
+        </li>
+    </ul>
+</div>
+</script>
+
+<script id="tmpl-topbar-login" type="text/template">
+<div class="topbar-inner">
+    <a href="{{domain.portal}}" title="Manufacturers" alt="Manufacturers" class="icon substation-logo">GlobalMarket.com</a>
+    <div class="login-info">Welcome , Dear <a href="{{accountUrl}}" >{{accountName}}</a></div>
+    {{> search}}
+    <ul class="quick-menu">
+        {{^isBuyer}}
+        <li class="menu"><a href="{{domain.vo}}">My GlobalMarket <i class="dropdown"></i></a><b class="seperate">|</b>
+            <ul class="sub msg-list {{isBuyer}}">
+                <li class="msg-all"><a href="{{domain.vo}}/gmvo/mygm/vo/mvo/loadPage.gm#!/message/inbox/myInquery">Message Center</a></li>
+                <li><a href="{{domain.vo}}/gmvo/mygm/product/product/add.gm">Add Products</a></li>
+                <li><a href="{{domain.vo}}/gmvo/mygm/vo/mvo/loadPage.gm#!/product/manage/online">Manage Products</a></li>
+                <li><hr></li>
+                <li><a href="{{domain.vo}}/gmvo/mygm/vo/mvo/loadPage.gm#!/contactInfo">Account Setting</a></li>
+                <li><a href="{{domain.portal}}/gmportal/user/logout.gm" class="topbar-logout">Sign Out</a></li>
+            </ul>
+            <span class="msg-hint warn">···</span>
+        </li>
+        {{/isBuyer}}
+
+        {{#isBuyer}}
+        {{^isExtSeller}}
+        <li class="caption"><a href="{{domain.like}}/#!/liked-products"><i class="icon sns-favorite"></i><span class="caption">Liked Products</span></a><b class="seperate">|</b>
+        </li>
+        {{/isExtSeller}}
+        <li class="menu"><a href="javascript:void(0);"><i class="icon message"></i><span class="caption">Message</span><i class="dropdown"></i></a><b class="seperate">|</b>
+            <ul class="sub msg-list">
+                <li class="msg-follow"><a href="{{domain.like}}/index.html#!/followers">New Followers</a></li>
+                <li class="msg-comment"><a href="{{domain.like}}/index.html#!/messages/comments">New Comments</a></li>
+                <li class="msg-blogAt"><a href="{{domain.like}}/index.html#!/messages/mention">New Mentions</a></li>
+                {{^isExtSeller}}
+                <li><hr></li>
+                <li class="msg-inqReply"><a href="{{domain.like}}/index.html#!/inquiry">New Inquiry Replies</a></li>
+                <li class="msg-blReply"><a href="{{domain.like}}/index.html#!/buying-lead">New Buying Lead Replies</a></li>
+                {{/isExtSeller}}
+            </ul>
+            <span class="msg-hint warn">···</span>
+        </li>
+        {{/isBuyer}}
+
+        {{^isBuyer}}
+        <li><a href="{{domain.like}}"><i class="icon sns-entrance">Like</i></a><b class="seperate language">|</b></li>
+        {{/isBuyer}}
+
+        {{#isBuyer}}
+        <li class="menu"><a href="{{domain.like}}"><i class="icon sns-entrance"></i> <i class="dropdown"></i></a><b class="seperate language">|</b>
+            <ul class="sub">
+                <li><a href="{{domain.like}}">My Trade Network</a></li>
+                {{^isExtSeller}}
+                <li><a href="{{domain.like}}/index.html#!/inquiry">My Inquiry</a></li>
+                <li><a href="{{domain.like}}/index.html#!/buying-lead">My Buying Lead</a></li>
+                {{/isExtSeller}}
+                <li><hr></li>
+                <li><a href="{{domain.like}}/index.html#!/account-setting">Account Setting</a></li>
+                <li><a href="{{domain.portal}}/gmportal/user/logout.gm" class="topbar-logout">Sign Out</a></li>
+            </ul>
+        </li>
+        {{/isBuyer}}
+        <li class="menu language"><a href="javascript:void(0);"><i class="icon language"></i><span class="caption">Language</span><i class="dropdown"></i></a>
+            <ul class="sub" style="min-width: 100%;">
+                {{> language}}
+            </ul>
+        </li>
+    </ul>
+</div>
+</script>
+<script id="tmpl-topbar-search" type="text/template">
+    <div class="search">
+        <input type="text" name="keyword" value="" placeholder="Search Products on GlobalMarket.com" />
+        <i class="icon icon-zoom"></i>
+        {{^isManu}}
+        <a target="_blank" href="{{domain.portal}}/gmportal/mygm/sourcingevent/buylead/post.gm?ref=90" class="btn white small">Post Buying Lead</a>
+        {{/isManu}}
+    </div>
+</script>
+<script id="tmpl-topbar-language" type="text/template">
+    <li><a rel="nofollow" href="http://spanish.{{domain.mulPath}}{{domain.mulLink}}" title="{{domain.mulTitle}}" alt="${mulLinkMap['MUL_MUL_ALT']}" target="_blank">Español</a></li>
+    <li><a rel="nofollow" href="http://portuguese.{{domain.mulPath}}{{domain.mulLink}}" title="{{domain.mulTitle}}" alt="${mulLinkMap['MUL_MUL_ALT']}" target="_blank">Português</a></li>
+    <li><a rel="nofollow" href="http://french.{{domain.mulPath}}{{domain.mulLink}}" title="{{domain.mulTitle}}" alt="${mulLinkMap['MUL_MUL_ALT']}" target="_blank">Français</a></li>
+    <li><a rel="nofollow" href="http://russian.{{domain.mulPath}}{{domain.mulLink}}" title="{{domain.mulTitle}}" alt="${mulLinkMap['MUL_MUL_ALT']}" target="_blank">Русский</a></li>
+    <li><a rel="nofollow" href="http://german.{{domain.mulPath}}{{domain.mulLink}}" title="{{domain.mulTitle}}" alt="${mulLinkMap['MUL_MUL_ALT']}" target="_blank">Deutsch</a></li>
+    <li><a rel="nofollow" href="http://arabic.{{domain.mulPath}}{{domain.mulLink}}" title="{{domain.mulTitle}}" alt="${mulLinkMap['MUL_MUL_ALT']}" target="_blank">العربية</a></li>
+    <li><a rel="nofollow" href="http://korean.{{domain.mulPath}}{{domain.mulLink}}" title="{{domain.mulTitle}}" alt="${mulLinkMap['MUL_MUL_ALT']}" target="_blank">한국의</a></li>
+    <li><a rel="nofollow" href="http://japanese.{{domain.mulPath}}{{domain.mulLink}}" title="{{domain.mulTitle}}" alt="${mulLinkMap['MUL_MUL_ALT']}" target="_blank">日本語</a></li>
+</script>

@@ -1,0 +1,491 @@
+<style>
+#ModuleId{
+    margin: 30px auto 20px auto;
+    width: 980px;
+    position: relative;
+    h1{
+        font-size:20px;
+        line-height:36px;
+        color:#111;
+        font-weight:bold;
+        border-bottom:1px solid #DCDCDC;
+        text-indent:10px;
+    }
+    .ajax-loading-icon{
+        top: 6px;
+        left: 288px;
+        position:absolute;
+        width: 0;
+        height: 0;
+        font-size: 0;
+        display:none;
+        padding: 8px;
+        background: url("//static.globalmarket.com/g/images/common/ajaxloading.gif");
+    }
+
+    .row{
+      line-height: 27px;
+      min-height: 27px;
+      margin-bottom: 15px;
+      .name, .value{
+        display: block;
+        vertical-align: top;
+        word-break: break-all;
+      }
+      .name{
+        float: left;
+        clear: left;
+        width: 100px;
+        text-align: right;
+        width: 24%;
+        font-weight: bold;
+      }
+      .name:after{
+        content: ':';
+        float: right;
+        margin: 0 3px;
+      }
+      .value{
+        width: 75%;
+        float: right;
+        position: relative;
+
+        input[type=checkbox]{
+            margin-right: 5px;
+            margin-top: -2px;
+        }
+        #ModuleId-email{
+            width: 288px;
+        }
+        .logout{
+            display: none;
+            margin-left: 1em;
+            font-size: 0.9em;
+        }
+        #ModuleId-subject, #ModuleId-messages{
+            width: 488px;
+        }
+        #ModuleId-subject.list{
+            padding-right: 37px;
+            width: 461px;
+        }
+        .subject-list{
+            position: absolute;
+            background-color: #FFF;
+            z-index: 1;
+            border: 1px solid #d1d5e0;
+            width: 508px;
+            top: 26px;
+            display: none;
+            li{
+                padding: 2px 10px;
+                line-height: 2em;
+                cursor: pointer;
+                &:hover{
+                    background-color: #f8fafd;
+                }
+            }            
+        }
+        #ModuleId-messages{
+            height:168px;
+            transition:height 0.5s;
+            -moz-transition:height 0.5s;
+            -webkit-transition:height 0.5s;
+            -o-transition:height 0.5s;
+
+            @media screen and (max-height:650px){
+                height:128px;
+            }
+        }
+        .status-bar{
+            width:510px;
+            color:#999;
+            overflow:hidden;
+            strong{color: #eca100}
+            .count{font-style:normal;}
+        }
+        &.request-group{
+            label{
+                zoom:1;
+                *display: inline;
+                display: inline-block;
+                width: 23%;
+                margin-right: 3%;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+      }
+      &:after{
+        content: " ";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+    };
+    .more-item{
+        display: none;
+    }
+
+    .icon-arrow-bottom,.icon-arrow-right{margin-right:5px;}
+    .icon-require{position:relative;top:-1px;right:3px;}
+    .icon.inquire-title{
+        background-position:-326px -105px;
+        width:32px;height:30px;float:left;
+    }
+    .input-msg.error{
+        margin-top: -1px;
+        display: none;
+    }
+
+    .icon.upload{background-position:-390px -51px;width:12px;height:12px;margin-top:-4px;margin-right:8px;}
+    .submit{text-align:left;border:none;margin:16px auto;width:100%;height:auto;line-height:0;padding-left:157px;}
+
+    #toList{font-weight:bold;}
+    #toListArea{
+        &.close{display: none;}
+        &.single{
+            .multi{
+                border-color:transparent;
+                background-color:transparent;
+                padding: 2.5px 0;
+                line-height:26px;
+                .item-caption{
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                    white-space:nowrap;
+                }
+                .item-content .wrap{
+                    margin-bottom:0;
+                }
+            }
+            input{
+                display: none;
+            }
+        }
+        .multi{
+            border:#D7DBE4 solid 1px;
+            background:#FCFCFC;
+            width:468px;
+            padding:10px 20px;
+            overflow:hidden;
+            zoom:1;
+            .item-caption, .item-content{
+                margin-bottom: 15px;
+                line-height: 1.5em;
+            }
+            .item-caption{
+                width:125px;
+                padding-right:5px;
+                float:left;
+                overflow:hidden;
+            }
+            .item-content{
+                width:335px;
+                float:left;
+                .cName, .pName{
+                    width:260px;
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                    white-space:nowrap;
+                    float: left;
+                    height: 20px;
+                    line-height: 20px;
+                }
+                .pImg{
+                    display:block;
+                    float:left;
+                    margin-right:5px;
+                    padding: 1px;
+                    border: 1px solid #d1d5e0;
+                    &:hover{
+                        border-color:#b2bad4;
+                    }
+                }
+                .wrap{
+                    padding-left:20px;
+                    margin-bottom: 10px;
+                    overflow:hidden;
+                    zoom:1;
+                    position:relative;
+                    display:block;
+                }
+                input{
+                    position:absolute;
+                    left:0;
+                    top:0;
+                    margin: 0;
+                }
+                .cName{color:#33488c;}
+                .pName{color:#777;}
+            }
+        }
+    }
+
+    .icon.icon-submit{background-position:-402px -52px;width:15px;height:15px;margin-right:10px;}
+
+    /*Upload style*/
+    #upload-container{margin-top:5px;overflow:hidden;zoom:1;}
+    #upload-btn{height:22px;line-height:22px;font-weight:bold;float:left;}
+    .upload-tips{margin-left:15px;line-height:1.2em;float:left;color:#999;}
+    .upload-tips strong{color: #eca100}
+    #upload-container ul{clear:both;float:left;margin-top:10px;}
+    #upload-container li{margin-bottom:5px;cursor:default;height:20px;line-height:20px;}
+    #upload-container .name,#upload-container .progress{display:inline-block;*display:inline;zoom:1;line-height:1.5em;height:1.5em;vertical-align:top;}
+    #upload-container .name{width:120px;margin-right:10px;overflow:hidden;text-overflow:ellipsis;}
+    #upload-container .progress{width:200px;background-color:#eee;margin-right:10px;text-align:center;position:relative;box-shadow:1px 1px 1px rgba(0,0,0,0.2);}
+    #upload-container .progress span{z-index:10;position:relative;color:#FFF;text-shadow:1px 1px 1px #555;}
+    #upload-container .progress .animate{width:0;height:100%;position:absolute;top:0;left:0;background-color:#51b048;}
+    #upload-container .cancel{cursor:pointer;}
+
+}
+</style>
+{{{_section}}}
+<form novalidate="" autocomplete="off" action="{{domain}}/gmportal/inquiry/saveInquiry.gm{{#field.ref}}?ref={{.}}{{/field.ref}}" id="ModuleId" class="wrap" method="post" name="inquiryform">
+
+    {{#field.locale}}
+    <input type="hidden" name="locale" value="{{.}}">
+    {{/field.locale}}
+
+    {{#field.token}}
+    <input type="hidden" name="inquiryToken" value="{{.}}">
+    {{/field.token}}
+
+    <input type="hidden" name="inquiryIds" id="ModuleId-inquiryIds" value="{{field.inquiryIds}}">
+
+    {{^lite}}
+    <input type="hidden" name="inqTrace">
+    {{/lite}}
+
+    {{^lite}}
+    <div class="row title">
+        <i class="icon inquire-title"></i>
+        <h1>{{txt.contact_manufacturer}}{{^txt.contact_manufacturer}}Contact Manufacturer(s){{/txt.contact_manufacturer}}</h1>        
+    </div>
+    {{/lite}}
+    
+    <div class="row">
+        <div class="name">
+            <i class="icon icon-require"></i>
+            <label for="ModuleId-email">{{txt.from}}{{^txt.from}}Form{{/txt.from}}</label>
+        </div>
+
+        <div class="value">
+        {{^field.email}}
+            <input maxlength="50" type="text" id="ModuleId-email" name="email" placeholder="{{txt.please_enter_your_email}}{{^txt.please_enter_your_email}}Please enter your email{{/txt.please_enter_your_email}}" tabindex="1" data-error-for="[for=ModuleId-email].error">
+        {{/field.email}}
+        {{#field.email}}
+            <input maxlength="50" type="hidden" id="ModuleId-email" name="email" value="{{field.email}}">
+            <strong>{{field.email}}</strong>
+        {{/field.email}}
+
+            <div class="input-msg error" for="ModuleId-email"></div>
+
+            <i class="ajax-loading-icon" data-for="email"></i>
+
+            <a class="logout" href="/gmportal/user/logout.gm">{{txt.change_email_address}}{{^txt.change_email_address}}Change Email Address{{/txt.change_email_address}}</a>
+            
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="name">
+            {{txt.to}}{{^txt.to}}To{{/txt.to}}
+        </div>
+        <div class="value">
+            {{^lite}}
+            <a id="toList" href="javascript:void(0)" hidefocus>
+                <i class="icon icon-arrow-right"></i>
+                <span></span>
+            </a>
+            <div id="toListArea">
+
+                <div class="multi">
+                    {{#inquiryItems}}
+                        <div class="item-caption">{{uName}}</div>
+                        <div class="item-content">
+                        {{#items}}
+                            <div class="wrap">
+                            <input {{^pImg}}style="top: 3px;"{{/pImg}} type="checkbox" checked="checked" value="{{id}}">
+                            {{#pImg}}
+                            <img class="pImg" width="43" height="43" src="{{pImg}}" />
+                            {{/pImg}}
+                            {{#pName}}
+                            <span class="pName">{{pName}}</span>
+                            {{/pName}}
+                            <span class="cName">{{cName}}</span>
+                            </div>
+                        {{/items}}
+                        </div>
+                        <div style="clear:both"></div>
+                    {{/inquiryItems}}
+                </div>                
+            </div>
+            {{/lite}}
+            {{#lite}}
+                {{field.contact_user_name}}
+            {{/lite}}
+        </div>
+    </div>
+
+    <div class="row subject">
+        <div class="name">
+            <i class="icon icon-require"></i>
+            <label for="ModuleId-subject">{{txt.subject}}{{^txt.subject}}Subject{{/txt.subject}}</label>
+        </div>
+
+        <div class="value">
+            <input type="text" maxlength="200" id="ModuleId-subject" name="subject" tabindex="2" data-error-for="[for=ModuleId-subject].error" value="{{field.subject}}">
+            
+            <ul class="subject-list">
+                {{#inquiryTitles}}
+                    <li>{{{.}}}</li>
+                {{/inquiryTitles}}
+            </ul>
+            
+            <div class="input-msg error" for="ModuleId-subject"></div>
+        </div>
+    </div>
+
+    <div class="row messages">
+        <div class="name">
+            <i class="icon{{^lite}} icon-require{{/lite}}"></i>
+            <label for="ModuleId-messages">{{txt.message}}{{^txt.message}}Message{{/txt.message}}</label>
+        </div>
+
+        <div class="value">
+            <textarea maxlength="3000" id="ModuleId-messages" name="messages" tabindex="3" data-error-for="[for=ModuleId-messages].error">{{field.messages}}</textarea>
+            <div class="input-msg error" for="ModuleId-messages"></div>
+
+            {{#txt.limit_count}}
+            <div class="status-bar">
+                <span>{{{txt.limit_tips}}}</span>
+                <span class="count" style="float:right;">{{{txt.limit_count}}}</span>
+            </div>
+            {{/txt.limit_count}}
+
+            <script id="tooltips-messages" type="text/template">
+                <spring:message code="specify.your.description.requests.the.follow.3.points" />
+                <ul style="line-height:1.65em;margin-top:8px;">
+                    <li><spring:message code="1.company.introduction" /></li>
+                    <li><spring:message code="2.product.requests.in.detail" /></li>
+                    <li><spring:message code="3.required.information" /></li>
+                </ul>
+            </script>
+
+        </div>
+    </div>
+
+    <script id="tooltips-messages" type="text/template">
+        Specify your description requests the follow 3 points:
+        <ul style="line-height:1.65em;margin-top:8px;">
+            <li>1.Company introduction</li>
+            <li>2.Product requests in detail</li>
+            <li>3.Required information, e.g.qutation, lead time, MOQ</li>
+        </ul>
+    </script>
+
+    {{^lite}}
+    <hr style="border-top:1px dotted #DCDCDC;">
+
+    <div class="row">
+        <div class="name">
+            <a class="more-item-btn" href="javascript:void(0);">
+                <i class="icon icon-arrow-right"></i>
+                {{txt.addictional_information}}{{^txt.addictional_information}}Addictional Information{{/txt.addictional_information}}
+            </a>
+        </div>
+        <div class="value"></div>
+    </div>
+    {{/lite}}
+
+    <div class="more-item">
+
+        {{^lite}}
+        <div class="row">
+            <div class="name">
+                {{txt.deadline_for_response}}{{^txt.deadline_for_response}}Deadline for Response{{/txt.deadline_for_response}}
+            </div>
+            <div class="value">
+                <select data-style="width:18px;margin-right:8px;" id="deadline" name="deadline"><option value=1>1<option value=2>2<option value=3>3<option value=4>4<option value=5>5<option value=6>6<option value=7>7<option value=8>8<option value=9>9<option value=10 selected>10<option value=11>11<option value=12>12<option value=13>13<option value=14>14<option value=15>15<option value=16>16<option value=17>17<option value=18>18<option value=19>19<option value=20>20</select>{{txt.days}}{{^txt.days}}Day(s){{/txt.days}}
+            </div>
+        </div>
+        {{/lite}}
+
+        <div class="row purchase">
+            <div class="name">
+                {{txt.purchase_quantity}}{{^txt.purchase_quantity}}Purchase Quantity{{/txt.purchase_quantity}}
+            </div>
+
+            <div class="value">
+                <input type="text" id="ModuleId-expectQtyVol" name="expectQtyVol" maxlength="20" style="margin-right:10px;" placeholder="e.g. 10,000">
+
+                <select data-style="width:128px;" name="__unit">
+                {{#unit_list}}
+                    <option value="{{key}}" >{{value}}</option>
+                {{/unit_list}}
+                {{^unit_list}}
+                    <option value="Pieces">Pieces</option>
+                    <option value="20Container">20Container</option>
+                    <option value="40Container">40Container</option>
+                    <option value="40HQ Container">40HQ Container</option>
+                    <option value="Bags">Bags</option>
+                    <option value="Boxes">Boxes</option>
+                    <option value="Foot">Foot</option>
+                    <option value="Meter">Meter</option>
+                    <option value="Pairs">Pairs</option>
+                    <option value="Reams">Reams</option>
+                    <option value="Rolls">Rolls</option>
+                    <option value="Sets">Sets</option>
+                    <option value="Square Meters">Square Meters</option>
+                    <option value="Square Feet">Square Feet</option>
+                    <option value="Tons">Tons</option>
+                    <option value="Others">Others</option>
+                {{/unit_list}}
+                </select>
+            </div>
+        </div>
+
+        {{#otherRequest.length}}
+        <div class="row">
+            <div class="name">
+            {{txt.other_requests}}{{^txt.other_requests}}Other Requests{{/txt.other_requests}}
+            </div>
+            <div class="value request-group">
+                {{#otherRequest}}
+                    <label for="otherRequests{{idx}}"><input type="checkbox" id="otherRequests{{idx}}" name="otherRequests" value="{{key}}">{{value}}</label>
+                {{/otherRequest}}
+            </div>
+        </div>
+        {{/otherRequest.length}}
+
+    </div>
+
+    {{^lite}}
+    <hr style="margin-bottom:15px;">
+    {{/lite}}
+
+    {{#cate_list}}
+    <div class="row">
+        <div class="value">
+            <label for="edmon">
+                <input type="checkbox" checked="checked" name="edmon" id="edmon">
+                {{txt.email_me_for_update}}{{^txt.email_me_for_update}}Email me timely updates on the latest Product and Manufacturer information for{{/txt.email_me_for_update}}:
+            </label>
+
+            <div class="cate-list">
+                <strong>{{cate_list}}</strong>
+            </div>
+        </div>
+    </div>
+    {{/cate_list}}
+
+    <div class="row">
+        <div class="value">
+            <button tabindex="4" type="submit" class="btn yellow large"><i class="icon icon-submit"></i>{{txt.submit}}{{^txt.submit}}Submit{{/txt.submit}}</button>
+        </div>
+    </div>
+</form>
